@@ -8,6 +8,6 @@ app = FastAPI()
 #     raise NotImplimentedError("`api key` was not set")
 @app.get("/")
 def read_index():
-    return {"hello","world again!"}
+    return {"hello":"world again!"}
 
 #current video timestap is 1:44

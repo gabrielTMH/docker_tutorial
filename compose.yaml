@@ -2,7 +2,7 @@ services:
   static_html:  #this is a custom ekey name 
     build:
       context: ./static_html #where am i building it i am building it right here so i am using the `.` command
-      dockerfile: static.DockerFile
+      dockerfile: static.Dockerfile
     ports:
       - 8000:8000
       - 3000:8000
