@@ -2,10 +2,10 @@ from fastapi import FastAPI
 import os
 
 app = FastAPI()
-API_KEY = os.environ.get("API_KEY")
+# API_KEY = os.environ.get("API_KEY")
 
-if not API_KEY:
-    raise NotImplimentedError("`api key` was not set")
+# if not API_KEY:
+#     raise NotImplimentedError("`api key` was not set")
 @app.get("/")
 def read_index():
     return {"hello","world again!"}
