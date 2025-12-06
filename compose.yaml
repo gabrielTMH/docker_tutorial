@@ -1,0 +1,39 @@
+services: 
+  static_html:  #this is a custom ekey name 
+    build:
+      context: ./static_html #where am i building it i am building it right here so i am using the `.` command
+      dockerfile: static.DockerFile
+    ports:
+      - 8000:8000
+      - 3000:8000
+    command: python -m http.server 8000
+    volumes: 
+    - ./static_html/src:/app
+    
+  backend:  #this is a custom ekey name 
+    build:
+      context: ./backend   #where am i building it i am building it right here so i am using the `.` command
+      dockerfile: DockerFile
+    ports:
+      - 8080:8000
+      
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 
+    environment:
+      - PORT=8000
+    env_file:
+      - .env
+    volumes: 
+    - ./backend/src:/app
+    develop:
+      watch:
+        - action: rebuild
+          path: backend/requirements.txt
+        - action: rebuild
+          path: backend/DockerFile
+        # - action: sync
+        #   path: backend/src/
+        #   target: /app
+        - action: restart
+          path: backend/src
+    
+   
